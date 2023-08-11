@@ -1,11 +1,11 @@
 import { BaseEntity } from 'src/base.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
-import { CoffeeInventoryEntity } from './coffeeInventory.entity';
+import { Inventory } from './inventory.entity';
 
 @Entity({
-  name: 'coffee_product',
+  name: 'product',
 })
-export class CoffeeProductEntity extends BaseEntity {
+export class Product extends BaseEntity {
   @Column()
   name: string;
 
@@ -25,8 +25,8 @@ export class CoffeeProductEntity extends BaseEntity {
   price: number;
 
   @Column()
-  category_id: number;
+  categoryId: number;
 
-  @OneToMany(() => CoffeeInventoryEntity, (inventory) => inventory.product)
-  inventories: CoffeeInventoryEntity[];
+  @OneToMany(() => Inventory, (inventory) => inventory.product)
+  inventories: Inventory[];
 }

@@ -2,9 +2,9 @@ import { BaseEntity } from 'src/base.entity';
 import { Column, Entity } from 'typeorm';
 
 @Entity({
-  name: 'product_category',
+  name: 'category',
 })
-export class ProductCategoryEntity extends BaseEntity {
+export class Category extends BaseEntity {
   @Column()
   name: string;
 }
