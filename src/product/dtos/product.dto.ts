@@ -21,6 +21,9 @@ export class CreateProductDto {
   price: number;
 
   @IsNotEmpty()
+  image: string;
+
+  @IsNotEmpty()
   categoryId: number;
 
   @IsNotEmpty()

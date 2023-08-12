@@ -25,6 +25,9 @@ export class Product extends BaseEntity {
   price: number;
 
   @Column()
+  image: string;
+
+  @Column()
   categoryId: number;
 
   @OneToMany(() => Inventory, (inventory) => inventory.product)
