@@ -7,6 +7,8 @@ import { Product } from './product/entities/product.entity';
 import { ProductModule } from './product/product.module';
 import { Inventory } from './product/entities/inventory.entity';
 import { Category } from './product/entities/category.entity';
+import { UserModule } from './user/user.module';
+import { User } from './user/entities/user.entity';
 
 @Module({
   imports: [
@@ -15,9 +17,9 @@ import { Category } from './product/entities/category.entity';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'rootpassword',
+      password: 'password',
       database: 'two14coffee',
-      entities: [Inventory, Product, Category],
+      entities: [Inventory, Product, Category, User],
       synchronize: true,
       extra: {
         charset: 'utf8mb4_unicode_ci',
@@ -25,6 +27,7 @@ import { Category } from './product/entities/category.entity';
     }),
     ConfigModule.forRoot(),
     ProductModule,
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService],
