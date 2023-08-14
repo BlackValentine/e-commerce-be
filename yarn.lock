@@ -2042,6 +2042,13 @@
   "resolved" "https://registry.npmjs.org/@types/node/-/node-16.18.39.tgz"
   "version" "16.18.39"
 
+"@types/nodemailer@^6.4.9":
+  "integrity" "sha512-XYG8Gv+sHjaOtUpiuytahMy2mM3rectgroNbs6R3djZEKmPNiIJwe9KqOJBGzKKnNZNKvnuvmugBgpq3w/S0ig=="
+  "resolved" "https://registry.npmjs.org/@types/nodemailer/-/nodemailer-6.4.9.tgz"
+  "version" "6.4.9"
+  dependencies:
+    "@types/node" "*"
+
 "@types/parse-json@^4.0.0":
   "integrity" "sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA=="
   "resolved" "https://registry.npmjs.org/@types/parse-json/-/parse-json-4.0.0.tgz"
@@ -5246,6 +5253,11 @@
   "integrity" "sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ=="
   "resolved" "https://registry.npmjs.org/node-releases/-/node-releases-2.0.13.tgz"
   "version" "2.0.13"
+
+"nodemailer@^6.9.4":
+  "integrity" "sha512-CXjQvrQZV4+6X5wP6ZIgdehJamI63MFoYFGGPtHudWym9qaEHDNdPzaj5bfMCvxG1vhAileSWW90q7nL0N36mA=="
+  "resolved" "https://registry.npmjs.org/nodemailer/-/nodemailer-6.9.4.tgz"
+  "version" "6.9.4"
 
 "nopt@^5.0.0":
   "integrity" "sha512-Tbj67rffqceeLpcRXrT7vKAN8CwfPeIBgM7E6iBkmKLV7bEMwpGgYLGv0jACUsECaa/vuxP0IjEont6umdMgtQ=="

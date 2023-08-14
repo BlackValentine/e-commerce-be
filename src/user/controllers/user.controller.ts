@@ -3,12 +3,14 @@ import { AuthGuard } from '@nestjs/passport';
 import { CreateUserDto, LoginUserDto } from '../dtos/user.dto';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
+import EmailService from '../services/email.service';
 
 @Controller('user')
 export class UserController {
   constructor(
     private readonly userService: UserService,
     private readonly authService: AuthService,
+    private readonly emailService: EmailService
   ) {}
 
   @Get('profile')
@@ -18,8 +20,10 @@ export class UserController {
   }
 
   @Post()
-  createNewUser(@Body() user: CreateUserDto) {
-    return this.userService.createNewUser(user);
+  async createNewUser(@Body() user: CreateUserDto) {
+    const response = this.userService.createNewUser(user);
+    await this.emailService.sendVerificationLink(user.email);
+    return response;
   }
 
   @Post('login')

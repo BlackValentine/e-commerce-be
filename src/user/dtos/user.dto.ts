@@ -1,5 +1,5 @@
 import { Expose } from 'class-transformer';
-import { IsNotEmpty } from 'class-validator';
+import { IsEmail, IsNotEmpty } from 'class-validator';
 
 export class CreateUserDto {
   @Expose()
@@ -7,6 +7,7 @@ export class CreateUserDto {
   userName: string;
 
   @Expose()
+  @IsEmail()
   @IsNotEmpty()
   email: string;
 
@@ -16,6 +17,7 @@ export class CreateUserDto {
 }
 
 export class LoginUserDto {
+  @IsEmail()
   @IsNotEmpty()
   email: string;
 
