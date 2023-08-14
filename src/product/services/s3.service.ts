@@ -28,7 +28,7 @@ export class S3Service {
     return url;
   }
 
-  async upload(file) {
+  async upload(file: any) {
     const base64Data = file.buffer;
     const mineType = file.fileType.mime;
     const objectId = this.genRanHex(32);
@@ -37,7 +37,7 @@ export class S3Service {
     return objectId;
   }
 
-  async deleteFileS3(imageName) {
+  async deleteFileS3(imageName: string) {
     const s3 = this.getS3();
     const params = {
       Bucket: this.publicBucketName,

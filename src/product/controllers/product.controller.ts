@@ -1,7 +1,6 @@
 import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { FormDataRequest } from "nestjs-form-data";
 import { CreateProductDto } from "../dtos/product.dto";
-import { Product } from "../entities/product.entity";
 import { ProductService } from "../services/product.service";
 import { S3Service } from "../services/s3.service";
 

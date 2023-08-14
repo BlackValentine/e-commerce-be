@@ -17,7 +17,7 @@ import { User } from './user/entities/user.entity';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'password',
+      password: 'rootpassword',
       database: 'two14coffee',
       entities: [Inventory, Product, Category, User],
       synchronize: true,
