@@ -9,6 +9,8 @@ import { AuthService } from './services/auth.service';
 import { ConfigService } from '@nestjs/config';
 import { JwtStrategy } from './jwt.stratregy';
 import EmailService from './services/email.service';
+import { AuthController } from './controllers/auth.controller';
+import { EmailConfirmationController } from './controllers/emailConfirmation.controller';
 
 @Module({
     imports: [
@@ -25,7 +27,7 @@ import EmailService from './services/email.service';
             },
         }),
     ],
-    controllers: [UserController],
+    controllers: [UserController, AuthController, EmailConfirmationController],
     providers: [UserService, AuthService, ConfigService, JwtStrategy, EmailService],
     exports: [TypeOrmModule],
 })

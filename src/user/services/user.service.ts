@@ -56,6 +56,20 @@ export class UserService {
     });
   }
 
+  async findById(id: number) {
+    return await this.usersRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
+  }
+
+  async markEmailAsConfirmed(email: string) {
+    return this.usersRepository.update({ email }, {
+      isActive: true
+    });
+  }
+
   async update(filter, update) {
     if (update.refreshToken) {
       update.refreshToken = await bcrypt.hash(

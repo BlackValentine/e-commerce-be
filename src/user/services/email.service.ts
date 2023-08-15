@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { createTransport } from 'nodemailer';
 import * as Mail from 'nodemailer/lib/mailer';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import VerificationTokenPayload from '../interface/verificationTokenPayload.interface';
+import { UserService } from './user.service';
 
 @Injectable()
 export default class EmailService {
@@ -12,6 +13,7 @@ export default class EmailService {
     constructor(
         private readonly configService: ConfigService,
         private readonly jwtService: JwtService,
+        private readonly userService: UserService
     ) {
         this.nodemailerTransport = createTransport({
             service: this.configService.get('EMAIL_SERVICE'),
@@ -42,5 +44,39 @@ export default class EmailService {
             subject: 'Email confirmation',
             text,
         })
+    }
+
+    public async confirmEmail(email: string) {
+        const user = await this.userService.findByEmail(email);
+        if (user.isActive) {
+            throw new HttpException('Email already confirmed', HttpStatus.BAD_REQUEST);
+        }
+        await this.userService.markEmailAsConfirmed(email);
+    }
+
+    public async decodeConfirmationToken(token: string) {
+        try {
+            const payload = await this.jwtService.verify(token, {
+                secret: this.configService.get('JWT_VERIFICATION_TOKEN_SECRET'),
+            });
+
+            if (typeof payload === 'object' && 'email' in payload) {
+                return payload.email;
+            }
+            throw new BadRequestException();
+        } catch (error) {
+            if (error?.name === 'TokenExpiredError') {
+                throw new HttpException('Email confirmation token expired', HttpStatus.BAD_REQUEST);
+            }
+            throw new HttpException('Bad confirmation token', HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public async resendConfirmationLink(userId: number) {
+        const user = await this.userService.findById(userId);
+        if (user.isActive) {
+            throw new HttpException('Email already confirmed', HttpStatus.BAD_REQUEST);
+        }
+        await this.sendVerificationLink(user.email);
     }
 }
