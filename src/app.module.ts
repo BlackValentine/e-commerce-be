@@ -9,6 +9,7 @@ import { Inventory } from './product/entities/inventory.entity';
 import { Category } from './product/entities/category.entity';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
+import { PaymentModule } from './payment/payment.module';
 
 @Module({
   imports: [
@@ -27,7 +28,8 @@ import { User } from './user/entities/user.entity';
     }),
     ConfigModule.forRoot(),
     ProductModule,
-    UserModule
+    UserModule,
+    PaymentModule,
   ],
   controllers: [AppController],
   providers: [AppService],

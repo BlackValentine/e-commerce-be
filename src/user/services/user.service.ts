@@ -5,11 +5,12 @@ import { CreateUserDto, LoginUserDto } from '../dtos/user.dto';
 import { User } from '../entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { plainToInstance } from 'class-transformer';
+import { PaymentService } from 'src/payment/services/payment.service';
 
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User) private usersRepository: Repository<User>,
+    @InjectRepository(User) private usersRepository: Repository<User>, private paymentService: PaymentService
   ) {}
 
   async createNewUser(user: CreateUserDto): Promise<CreateUserDto> {
@@ -22,7 +23,11 @@ export class UserService {
     if (userInDb) {
       throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
     }
-    const newUser = await this.usersRepository.save(user);
+    const stripeCustomer = await this.paymentService.createCustomer(user.userName, user.email)
+    const newUser = await this.usersRepository.save({
+      ...user,
+      stripeCustomerId: stripeCustomer.id
+    });
     return plainToInstance(CreateUserDto, newUser);
   }
 

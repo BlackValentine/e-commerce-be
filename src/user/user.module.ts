@@ -11,6 +11,7 @@ import { JwtStrategy } from './jwt.stratregy';
 import EmailService from './services/email.service';
 import { AuthController } from './controllers/auth.controller';
 import { EmailConfirmationController } from './controllers/emailConfirmation.controller';
+import { PaymentModule } from 'src/payment/payment.module';
 
 @Module({
     imports: [
@@ -26,6 +27,7 @@ import { EmailConfirmationController } from './controllers/emailConfirmation.con
                 expiresIn: process.env.EXPIRESIN,
             },
         }),
+        PaymentModule
     ],
     controllers: [UserController, AuthController, EmailConfirmationController],
     providers: [UserService, AuthService, ConfigService, JwtStrategy, EmailService],

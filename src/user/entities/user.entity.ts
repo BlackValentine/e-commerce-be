@@ -12,8 +12,8 @@ export class User extends BaseEntity {
   @Column()
   email: string;
 
-  @Exclude()
   @Column()
+  @Exclude()
   password: string;
 
   @Column({ default: false })
@@ -21,4 +21,7 @@ export class User extends BaseEntity {
 
   @Column({ default: null })
   refreshToken: string;
+
+  @Column()
+  public stripeCustomerId: string;
 }

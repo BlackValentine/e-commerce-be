@@ -4,13 +4,15 @@ import { CreateUserDto, LoginUserDto } from '../dtos/user.dto';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import EmailService from '../services/email.service';
+import { PaymentService } from 'src/payment/services/payment.service';
 
 @Controller('user')
 export class UserController {
   constructor(
     private readonly userService: UserService,
     private readonly authService: AuthService,
-    private readonly emailService: EmailService
+    private readonly emailService: EmailService,
+    private readonly paymentService: PaymentService
   ) {}
 
   @Get('profile')

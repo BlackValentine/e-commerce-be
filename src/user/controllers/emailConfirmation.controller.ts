@@ -3,13 +3,13 @@ import {
     ClassSerializerInterceptor,
     UseInterceptors,
     Post,
-    Body,
     Req,
+    Body,
 } from '@nestjs/common';
 import ConfirmEmailDto from '../dtos/confirmEmail.dto';
 import EmailService from '../services/email.service';
 
-@Controller('email-confirmation')
+@Controller('/api/v1/email-confirmation')
 @UseInterceptors(ClassSerializerInterceptor)
 export class EmailConfirmationController {
     constructor(
